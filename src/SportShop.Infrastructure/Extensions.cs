@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SportShop.Infrastructure.DAL;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Builder;
+using SportShop.Infrastructure.Exceptions;
 
 namespace SportShop.Infrastructure;
 
@@ -12,6 +13,7 @@ public static class Extensions
     {
         services.AddControllers();
         services.Configure<AppOptions>(configuration.GetRequiredSection("app"));
+        services.AddSingleton<ExceptionMiddleware>();
         services.AddHttpContextAccessor();
         services.AddMSql(configuration);
 
@@ -36,6 +38,7 @@ public static class Extensions
 
     public static WebApplication UseInfrastructure(this WebApplication app)
     {
+        app.UseMiddleware<ExceptionMiddleware>();
         app.UseSwagger();
         app.UseSwaggerUI();
         app.UseCors("Open");
