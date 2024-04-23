@@ -1,10 +1,12 @@
 using Microsoft.Extensions.Options;
 using Serilog;
+using SportShop.Application;
 using SportShop.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
+    .AddApplication()
     .AddInfrastructure(builder.Configuration);
 
 builder.Host.UseSerilog((context, LoggerConfiguration) =>
