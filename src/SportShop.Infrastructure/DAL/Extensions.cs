@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SportShop.Application.Abstractions;
+using SportShop.Infrastructure.Repositories;
 
 namespace SportShop.Infrastructure.DAL;
 
@@ -15,6 +17,8 @@ internal static class Extensions
         services.AddDbContext<SportShopDbContext>(x => x.UseSqlServer(mSqlOptions.ConnectionString));
 
         services.AddHostedService<DatabaseInitializer>();
+
+        services.AddScoped<IProductRepository, ProductRepository>();
 
         return services;
     }

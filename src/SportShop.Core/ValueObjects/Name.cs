@@ -8,7 +8,7 @@ public sealed record Name
 
     public Name(string value)
     {
-        if (string.IsNullOrWhiteSpace(value) || value.Length is > 100 or < 3)
+        if (string.IsNullOrWhiteSpace(value) || value.Length is > 30 or < 3)
             throw new InvalidNameException(value);
 
         Value = value;

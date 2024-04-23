@@ -1,0 +1,9 @@
+@api = http://localhost:5072
+
+### add product
+Post {{api}}/product
+Content-Type: application/json
+
+{
+    "name": "Spodenki"
+} 
