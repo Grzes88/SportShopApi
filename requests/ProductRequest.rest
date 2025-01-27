@@ -7,3 +7,10 @@ Content-Type: application/json
 {
     "name": "Spodenki"
 } 
+
+### get products
+GET {{api}}/products
+Content-Type: application/json
+
+{
+} 

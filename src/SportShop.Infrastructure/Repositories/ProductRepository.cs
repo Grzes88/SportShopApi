@@ -1,4 +1,5 @@
-﻿using SportShop.Application.Abstractions;
+﻿using Microsoft.EntityFrameworkCore;
+using SportShop.Application.Abstractions;
 using SportShop.Core.Entities;
 using SportShop.Infrastructure.DAL;
 
@@ -16,4 +17,7 @@ internal sealed class ProductRepository : IProductRepository
         await _dbContext.Products.AddAsync(product, token);
         await _dbContext.SaveChangesAsync(token);
     }
+
+    public async Task<IEnumerable<Product>> GetProductsAsync(CancellationToken token)
+        => await _dbContext.Products.ToListAsync(token);
 }
