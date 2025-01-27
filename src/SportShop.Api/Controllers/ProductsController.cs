@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SportShop.Application.Commands.Products.Handlers;
+using SportShop.Application.Queries.Products.Handlers;
+using SportShop.Core.Entities;
 
 namespace SportShop.Api.Controllers;
 
@@ -19,4 +21,8 @@ public class ProductsController : ControllerBase
         await _mediator.Send(command, token);
         return NoContent();
     }
+
+    [HttpGet("/products")]
+    public async Task<IEnumerable<Product>> GetProducts(GetProductsQuery query, CancellationToken token)
+        => await _mediator.Send(query, token);
 }
