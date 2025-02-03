@@ -25,4 +25,11 @@ public class ProductsController : ControllerBase
     [HttpGet("/products")]
     public async Task<IEnumerable<Product>> GetProducts(GetProductsQuery query, CancellationToken token)
         => await _mediator.Send(query, token);
+
+    [HttpGet("{productId:guid}")]
+    public async Task<Product> GetProduct(Guid ProductId, GetProductQuery query, CancellationToken token)
+    {
+        var product = await _mediator.Send(new GetProductQuery(ProductId), token);
+        return product;
+    } 
 }
