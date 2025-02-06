@@ -14,3 +14,10 @@ Content-Type: application/json
 
 {
 } 
+
+### get product
+GET {{api}}/product/B7306338-F29C-496A-AD57-E35C5BEEEA7E
+Content-Type: application/json
+
+{
+} 

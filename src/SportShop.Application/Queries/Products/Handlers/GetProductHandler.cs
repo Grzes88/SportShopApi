@@ -18,10 +18,10 @@ public sealed class GetProductHandler : IRequestHandler<GetProductQuery, Product
     public async Task<IEnumerable<Product>> Handle(GetProductsQuery request, CancellationToken token)
         => await _productRepository.GetProductsAsync(token);
 
-    public Task<Product> Handle(GetProductQuery request, CancellationToken token)
+    public async Task<Product> Handle(GetProductQuery request, CancellationToken token)
     {
         var productId = new ProductId(request.productId);
-        var product = _productRepository.GetProductAsync(productId, token);
+        var product = await _productRepository.GetProductAsync(productId, token);
 
         if(product is null)
             throw new NotFoundProductException(productId);
